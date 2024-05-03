@@ -1,0 +1,43 @@
+.app-checkbox {
+  width: 19px;
+  height: 19px;
+  border-radius: 6px;
+  position: relative;
+  cursor: pointer;
+  align-self: center;
+  &__default-checkmark {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+  }
+  &__checkmark-line {
+    position: absolute;
+    top: 45%;
+    left: 45%;
+    transform: translate(-45%, -45%);
+    z-index: 100;
+  }
+  input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  input:checked ~ .app-checkbox__checkmark {
+    background-color: $accent;
+    border: 1px solid transparent;
+  }
+  &__checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 17px;
+    width: 17px;
+    background-color: $white;
+    border-radius: 6px;
+    border: 1px solid $light-grey;
+  }
+}
