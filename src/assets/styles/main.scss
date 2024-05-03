@@ -1,7 +1,14 @@
 @import './variables/colors.scss';
+
 @import './mixins/font-mixins.scss';
+
 @import './base.scss';
+
+@import './pages/login-page.scss';
+
 @import './components/header.scss';
+@import './components/login-form.scss';
+
 
 @font-face {
   font-family: 'Graphik';
@@ -10,8 +17,10 @@
 
 #app {
   max-width: 1920px;
+  height: 100vh;
   margin: 0 auto;
   padding: 2rem;
   font-weight: normal;
+  overflow: hidden;
 }
 
