@@ -7,7 +7,15 @@
 }
 
 @mixin regular-15 {
-  font-size: 15px;
   font-family: 'Graphik';
+  font-size: 15px;
   line-height: 25px;
+  font-weight: 400;
+}
+
+@mixin regular-12 {
+  font-family: 'Graphik';
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 400;
 }

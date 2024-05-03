@@ -1,7 +1,8 @@
 <template lang='pug'>
 .app-input
-  label(class="app-input-label", :for="id") {{ inputLabel }}
-  input(class="app-input-field" :type="inputType", :id="id", :placeholder="inputPlaceholder")
+  label(class="app-input__label", :for="id") {{ inputLabel }}
+  input(class="app-input__field" :type="inputType", :id="id", :placeholder="inputPlaceholder")
+  p(class='app-input__validation-error' v-if="validationError.length") {{ validationError }}
 </template>
 
 <script>
@@ -21,6 +22,10 @@ export default {
       default: 'text'
     },
     inputPlaceholder: {
+      type: String,
+      default: ''
+    },
+    validationError: {
       type: String,
       default: ''
     }

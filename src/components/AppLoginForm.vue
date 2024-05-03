@@ -4,6 +4,7 @@
   span(class='app-login-form__registration-cta') Нет аккаунта? 
     a(class='app-login-form__registration-cta-link', href="#") Зарегистрироваться
   <AppInput id="email" inputLabel="Email" inputType="email" inputPlaceholder="youremail@mail.ru" />
+  <AppInput id="password" inputLabel="Пароль" inputType="password" inputPlaceholder="Ваш пароль" validationError="" />
 </template>
 
 <script>
