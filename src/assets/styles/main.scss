@@ -5,11 +5,15 @@
 @import './base.scss';
 
 @import './pages/login-page.scss';
+@import './pages/products-page.scss';
 
 @import './components/header.scss';
 @import './components/login-form.scss';
 @import './components/input-field.scss';
 @import './components/button.scss';
+@import './components/products-header.scss';
+@import './components/products-panel.scss';
+
 
 
 @font-face {
@@ -21,7 +25,6 @@
   max-width: 1920px;
   height: 100vh;
   margin: 0 auto;
-  padding: 2rem;
   font-weight: normal;
   overflow: hidden;
 }

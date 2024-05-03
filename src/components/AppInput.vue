@@ -1,8 +1,9 @@
 <template lang='pug'>
-.app-input
+.app-input(:style="`max-width: ${inputMaxWidth}`")
   label(class="app-input__label", :for="id") {{ inputLabel }}
-  input(class="app-input__field" :type="inputType", :id="id", :placeholder="inputPlaceholder", :disabled="inputDisabled")
+  input(class="app-input__field", :type="inputType", :id="id", :placeholder="inputPlaceholder", :disabled="inputDisabled")
   p(class='app-input__validation-error' v-if="validationError.length") {{ validationError }}
+  <slot></slot>
 </template>
 
 <script>
@@ -32,6 +33,10 @@ export default {
     inputDisabled: {
       type: Boolean,
       default: false
+    },
+    inputMaxWidth: {
+      type: String,
+      default: '100%'
     }
   }
 }

@@ -1,0 +1,47 @@
+.app-products-panel {
+  width: 1600px;
+  min-height: 682px;
+  background-color: $white;
+  border-radius: 15px;
+  margin: 0 auto;
+  padding: 40px;
+  &__heading {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 30px;
+    svg {
+      cursor: pointer;
+      margin-right: 20px;
+    }
+  }
+  &__title {
+    @include h2;
+    margin-right: 10px;
+  }
+  &__products-counter {
+    @include regular-15;
+    color: $light-grey;
+  }
+  &__info {
+    margin-bottom: 30px;
+  }
+  &__paragraph {
+    @include regular-15;
+    margin: 20px 0;
+  }
+  &__adding-item-block {
+    width: 70%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  &__example-info {
+    @include regular-12;
+    color: $light-grey;
+    padding: 4px 0;
+    span {
+      text-decoration-style: dotted;
+    }
+  }
+}

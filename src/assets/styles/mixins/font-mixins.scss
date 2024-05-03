@@ -6,6 +6,13 @@
   margin-bottom: 20px;
 }
 
+@mixin h2 {
+  font-size: 28px;
+  font-family: 'Graphik';
+  font-weight: 600;
+  line-height: 28px;
+}
+
 @mixin regular-15 {
   font-family: 'Graphik';
   font-size: 15px;
@@ -25,4 +32,16 @@
   font-size: 15px;
   line-height: 25px;
   font-weight: 600;
+}
+
+@mixin arrow-down {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-bottom: 1px solid $dark-blue;
+  border-right: 1px solid $dark-blue;
+  top: 40%;
+  right: -20%;
+  transform: translateY(-50%) rotate(45deg);
 }
