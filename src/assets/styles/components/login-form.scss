@@ -21,4 +21,9 @@
       color: $accent;
     }
   }
+  &__forgot-pswrd-link {
+    text-decoration: none;
+    color: $accent;
+    @include regular-15;
+  }
 }
