@@ -7,16 +7,14 @@
   align-self: center;
   &__default-checkmark {
     position: absolute;
-    top: 45%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 3px;
+    left: 3px;
     z-index: 100;
   }
   &__checkmark-line {
     position: absolute;
-    top: 45%;
-    left: 45%;
-    transform: translate(-45%, -45%);
+    top: 7px;
+    left: 4px;
     z-index: 100;
   }
   input {

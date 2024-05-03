@@ -16,17 +16,20 @@
     span(class="app-products-grid__header-item") Максимальная цена
       <IconArrowDown />
     span(class="app-products-grid__header-item") Удалить
+  <AppProduct />
 </template>
 
 <script>
 import AppCheckbox from '@/components/AppCheckbox.vue'
 import IconArrowDown from '@/components/icons/IconArrowDown.vue'
+import AppProduct from '@/components/AppProduct.vue'
 
 export default {
   name: 'AppProductsGrid',
   components: {
     AppCheckbox,
-    IconArrowDown
+    IconArrowDown,
+    AppProduct
   }
 }
 </script>
