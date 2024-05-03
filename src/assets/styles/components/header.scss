@@ -13,8 +13,13 @@
     align-items: center;
     &__support-link {
       text-decoration: none;
+      margin-right: 5px;
       color: $light-grey;
       @include regular-15;
+    }
+    svg {
+      cursor: pointer;
+      margin: 0 5px;
     }
   }
 }
