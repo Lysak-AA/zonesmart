@@ -1,5 +1,5 @@
 <template lang="pug">
-button(class="app-button", :disabled="isBtnDisabled") {{ btnText }}
+button(:class="{'app-button': true, 'app-button--disabled': isBtnDisabled}", :style="btnStyle" :disabled="isBtnDisabled") {{ btnText }}
 </template>
 
 <script>
@@ -13,6 +13,10 @@ export default {
     isBtnDisabled: {
       type: Boolean,
       default: false
+    },
+    btnStyle: {
+      type: String,
+      default: ''
     }
   }
 }

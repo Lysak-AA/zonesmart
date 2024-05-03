@@ -1,0 +1,24 @@
+.app-products-grid {
+  width: 100%;
+  height: fit-content;
+  &__header {
+    height: 60px;
+    border-bottom: 1px solid $black-opacity-20;
+    display: grid;
+    grid-template-rows: 100%;
+    grid-template-columns: 1fr 1fr 2fr 2fr 4fr repeat(4, 2fr) 1fr;
+    &-item {
+      align-self: center;
+      @include regular-15;
+      color: $light-grey;
+      cursor: pointer;
+    }
+  }
+  &__checkbox {
+    width: 19px;
+    height: 19px;
+    align-self: center;
+    border: 1px solid $light-grey;
+    border-radius: 6px;
+  }
+}

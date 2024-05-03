@@ -9,20 +9,23 @@
     p(class="app-products-panel__paragraph") Для добавления нескольких товаров введите несколько артикулов через запятую или используя клавишу Enter
   .app-products-panel__adding-item-block
     <AppInput inputLabel="Добавление товаров" inputPlaceholder="Введите артикул продавца, артикул WB или ссылку на товар" inputMaxWidth="648px"><slot><span class="app-products-panel__example-info">Например ваши товары: <span>119203059</span>, <span>124366343</span>, <span>59801844</span></span></slot></AppInput>
-    <AppButton btnText="Добавить" />
+    <AppButton btnText="Добавить" style="padding: 15px 70px 15px 30px; margin: 0 0 20px 20px" :isBtnDisabled="true" />
+  <AppProductsGrid />
 </template>
 
 <script>
 import IconQuestion from '@/components/icons/IconQuestion.vue'
 import AppInput from '@/components/AppInput.vue'
 import AppButton from '@/components/AppButton.vue'
+import AppProductsGrid from '@/components/AppProductsGrid.vue'
 
 export default {
   name: 'AppProductsPanel',
   components: {
     IconQuestion,
     AppInput,
-    AppButton
+    AppButton,
+    AppProductsGrid
   }
 }
 </script>
