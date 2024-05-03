@@ -6,15 +6,18 @@
   <AppInput id="email" inputLabel="Email" inputType="email" inputPlaceholder="youremail@mail.ru" :inputDisabled="loading" />
   <AppInput id="password" inputLabel="Пароль" inputType="password" inputPlaceholder="Ваш пароль" validationError="" :inputDisabled="loading" />
   a(class='app-login-form__forgot-pswrd-link', href="#") Забыли пароль?
+  <AppButton btnText="Войти" :isBtnDisabled="false" />
 </template>
 
 <script>
 import AppInput from '@/components/AppInput.vue'
+import AppButton from '@/components/AppButton.vue'
 
 export default {
   name: 'AppLoginForm',
   components: {
-    AppInput
+    AppInput,
+    AppButton
   },
   data () {
     return {

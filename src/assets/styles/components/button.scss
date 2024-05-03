@@ -1,0 +1,22 @@
+.app-button {
+  @include bold-15;
+  padding: 17px 30px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: $accent;
+  color: $white;
+  transition: 0.3s ease;
+  &:hover {
+    background-color: linear-gradient(0deg, $accent, $accent),
+    linear-gradient(0deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05));    
+  }
+  &:active:not(.app-button--disabled) {
+    background: linear-gradient(0deg, $accent, $accent),
+    linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1));
+  }
+  &--disabled {
+    background-color: $light-grey-disabled;
+    color: $light-grey;
+  }
+}

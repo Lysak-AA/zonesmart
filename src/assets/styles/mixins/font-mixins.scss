@@ -19,3 +19,10 @@
   line-height: 16px;
   font-weight: 400;
 }
+
+@mixin bold-15 {
+  font-family: 'Graphik';
+  font-size: 15px;
+  line-height: 25px;
+  font-weight: 600;
+}
