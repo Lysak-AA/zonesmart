@@ -6,7 +6,8 @@ const store = createStore({
       user: {
         email: '',
         accessToken: '',
-        refreshToken: ''
+        refreshToken: '',
+        isLoggedIn: false
       }
     }
   },
@@ -15,11 +16,20 @@ const store = createStore({
       state.user.email = userData.email
       state.user.accessToken = userData.accessToken
       state.user.refreshToken = userData.refreshToken
+      state.user.isLoggedIn = true
     }
   },
   actions: {
     setUserData ({ commit }, userData) {
       commit('SET_USER', userData)
+    }
+  },
+  getters: {
+    isUserLoggedIn (state) {
+      return state.user.isLoggedIn
+    },
+    userEmail (state) {
+      return state.user.email
     }
   }
 })

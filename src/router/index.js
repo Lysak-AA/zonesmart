@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import ProductsView from '../views/ProductsView.vue'
+import state from '../store/state.js'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -18,7 +19,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from) => {
-  const isAuthenticated = localStorage.getItem('accessToken')
+  const isAuthenticated = state.getters.isUserLoggedIn
   if (!isAuthenticated && to.name !== 'login') {
     return { name: 'login' }
   }
