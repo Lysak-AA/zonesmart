@@ -17,9 +17,13 @@
       color: $light-grey;
       @include regular-15;
     }
+    &__support-link:hover {
+      color: $dark-blue;
+    }
     svg {
       cursor: pointer;
       margin: 0 5px;
+      transition: 0.3s ease;
     }
   }
 }
