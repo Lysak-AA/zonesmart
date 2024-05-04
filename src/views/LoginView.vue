@@ -96,6 +96,7 @@ export default {
         const response = await login(this.email, this.password)
         localStorage.setItem('accessToken', JSON.stringify(response.data.access))
         localStorage.setItem('refreshToken', JSON.stringify(response.data.refresh))
+        this.$router.push('/')
       } catch (err) {
         console.warn(err.message)
         this.loginError = 'Пользователя с такими учетными данными нет в базе'
