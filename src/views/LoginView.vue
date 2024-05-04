@@ -82,18 +82,11 @@ export default {
     },
     login (e) {
       e.preventDefault()
-      // if (this.v$.$invalid) {
-      //   return false
-      // }
-      this.v$.$touch()
-      let emailMsg = ''
-      for (let error of this.validation_errors) {
-       const [entries] = Object.entries(error)
-       if (entries[0] === 'email' || entries[0] === 'email_required') {
-        emailMsg = entries[1]
-       }
+      if (this.v$.$invalid) {
+        return false
       }
-      console.log(emailMsg)
+      console.log(this.v$)
+      
     }
   }
 }

@@ -4,7 +4,7 @@ form(class="app-login-form")
   span(class='app-login-form__registration-cta') Нет аккаунта? 
     a(class='app-login-form__registration-cta-link', href="#") Зарегистрироваться
   <AppInput id="email" inputLabel="Email" inputType="email" inputPlaceholder="youremail@mail.ru" :inputDisabled="loading" :validationError="email_validation_error" @input="$emit('email-input', $event)" @change="$emit('email-field-change')" />
-  <AppInput id="password" inputLabel="Пароль" inputType="password" inputPlaceholder="Ваш пароль" :inputDisabled="loading" :validationError="password_validation_error" @input="$emit('password-input', $event)" @change="$emit('password-field-change')" />
+  <AppInput id="password" inputLabel="Пароль" :inputType="passwordFieldInputType" inputPlaceholder="Ваш пароль" :inputDisabled="loading" :appendIcon="passwordFieldAppendIcon" :validationError="password_validation_error" @input="$emit('password-input', $event)" @change="$emit('password-field-change')" @eye-toggle="toggleEyeIcon($event)" @eye-closed-toggle="toggleEyeIcon($event)" />
   a(class='app-login-form__forgot-pswrd-link', href="#") Забыли пароль?
   <AppButton btnText="Войти" :isBtnDisabled="isFormInvalid" @submit="$emit('submit', $event)"/>
 </template>
@@ -31,7 +31,12 @@ export default {
   },
   data () {
     return {
-      loading: false
+      loading: false,
+      passwordFieldAppendIcon: {
+        isIcon: true,
+        icon: 'eye'
+      },
+      passwordFieldInputType: 'password'
     }
   },
   computed: {
@@ -54,6 +59,17 @@ export default {
        }
       }
       return message
+    }
+  },
+  methods: {
+    toggleEyeIcon (value) {
+      if (value) {
+        this.passwordFieldAppendIcon.icon = 'eye'
+        this.passwordFieldInputType = 'password'
+      } else {
+        this.passwordFieldAppendIcon.icon = 'eye-closed'
+        this.passwordFieldInputType = 'text'
+      }
     }
   }
 }
