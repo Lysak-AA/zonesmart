@@ -17,11 +17,17 @@ const store = createStore({
       state.user.accessToken = userData.accessToken
       state.user.refreshToken = userData.refreshToken
       state.user.isLoggedIn = true
+    },
+    SET_ACCESS (state, access) {
+      state.user.accessToken = access
     }
   },
   actions: {
     setUserData ({ commit }, userData) {
       commit('SET_USER', userData)
+    },
+    refresh ({ commit }, access) {
+      commit('SET_ACCESS', access)
     }
   },
   getters: {
