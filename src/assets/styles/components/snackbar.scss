@@ -1,0 +1,29 @@
+.app-snackbar {
+  padding: 17px 20px;
+  max-width: fit-content;
+  background-color: $dark-blue;
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &__text {
+    @include regular-15;
+    color: $white;
+    margin-right: 20px;
+  }
+  &__close-btn {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    @include regular-15;
+    color: $accent;
+    cursor: pointer;
+    margin: 0 20px 0 0;
+  }
+  svg {
+    cursor: pointer;
+  }
+}

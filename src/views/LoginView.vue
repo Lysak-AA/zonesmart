@@ -1,21 +1,25 @@
 <template lang="pug">
 .login-page
+  <AppSnackbar v-if="loginError.length" :text="loginError" @close-snackbar="loginError = ''" />
   <AppHeader />
   main(class='login-page-main')
-    <AppLoginForm @email-input="emailInputHandler" :isFormInvalid="v$.$invalid" :validationErrorMessages="validation_errors" @password-input="passwordInputHandler" @submit="login" @email-field-change="v$.$touch()" @password-field-change="v$.$touch()" />
+    <AppLoginForm @email-input="emailInputHandler" :isFormInvalid="v$.$invalid" :validationErrorMessages="validation_errors" @password-input="passwordInputHandler" @submit="submitForm" @email-field-change="v$.$touch()" @password-field-change="v$.$touch()" />
 </template>
 
 <script>
 import AppHeader from '@/components/AppHeader.vue'
 import AppLoginForm from '@/components/AppLoginForm.vue'
+import AppSnackbar from '@/components/AppSnackbar.vue'
 import { useVuelidate } from '@vuelidate/core'
 import { required, email, minLength, maxLength } from '@vuelidate/validators'
+import { login } from '@/api/index.js'
 
 export default {
   name: 'login',
   components: {
     AppHeader,
-    AppLoginForm
+    AppLoginForm,
+    AppSnackbar
   },
   setup () {
     return {
@@ -32,7 +36,8 @@ export default {
         password_requred: 'Пароль обязателен для заполнения',
         password_min_length: 'Пароль не должен быть короче 5 символов',
         password_max_length: 'Пароль не должен быть длиннее 20 символов'
-      }
+      },
+      loginError: ''
     }
   },
   validations () {
@@ -80,13 +85,22 @@ export default {
     passwordInputHandler (e) {
       this.password = e.target.value
     },
-    login (e) {
+    async submitForm (e) {
       e.preventDefault()
       if (this.v$.$invalid) {
         return false
       }
-      console.log(this.v$)
-      
+      try {
+        const response = await login(this.email, this.password)
+        localStorage.setItem('accessToken', JSON.stringify(response.data.access))
+        localStorage.setItem('refreshToken', JSON.stringify(response.data.refresh))
+      } catch (err) {
+        console.warn(err.message)
+        this.loginError = 'Пользователя с такими учетными данными нет в базе'
+        setTimeout(() => {
+          this.loginError = ''
+        }, 5000)
+      }
     }
   }
 }
