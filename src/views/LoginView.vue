@@ -96,6 +96,12 @@ export default {
         const response = await login(this.email, this.password)
         localStorage.setItem('accessToken', JSON.stringify(response.data.access))
         localStorage.setItem('refreshToken', JSON.stringify(response.data.refresh))
+        localStorage.setItem('user', JSON.stringify({ email: this.email }))
+        this.$store.dispatch('setUserData', {
+          email: this.email,
+          accessToken: response.data.access,
+          refreshToken: response.data.refresh
+        })
         this.$router.push('/')
       } catch (err) {
         console.warn(err.message)
