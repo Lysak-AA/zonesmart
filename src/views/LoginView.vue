@@ -2,7 +2,7 @@
 .login-page
   <AppHeader />
   main(class='login-page-main')
-    <AppLoginForm />
+    <AppLoginForm @email-input="emailInputHandler" @password-input="passwordInputHandler" @submit="login" />
 </template>
 
 <script>
@@ -14,6 +14,26 @@ export default {
   components: {
     AppHeader,
     AppLoginForm
-  }  
+  },
+  data () {
+    return {
+      user: {
+        email: '',
+        password: ''
+      }
+    }
+  },
+  methods: {
+    emailInputHandler (e) {
+      console.log(e)
+    },
+    passwordInputHandler (e) {
+      console.log(e)
+    },
+    login (e) {
+      e.preventDefault()
+      console.log(e)
+    }
+  }
 }
 </script>

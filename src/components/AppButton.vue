@@ -1,5 +1,5 @@
 <template lang="pug">
-button(:class="{'app-button': true, 'app-button--disabled': isBtnDisabled}", :style="btnStyle" :disabled="isBtnDisabled") {{ btnText }}
+button(:class="{'app-button': true, 'app-button--disabled': isBtnDisabled}", :style="btnStyle" :disabled="isBtnDisabled", @click="$emit('submit', $event)") {{ btnText }}
 </template>
 
 <script>
