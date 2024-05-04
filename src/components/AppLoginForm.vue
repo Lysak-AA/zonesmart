@@ -6,7 +6,7 @@ form(class="app-login-form")
   <AppInput id="email" inputLabel="Email" inputType="email" inputPlaceholder="youremail@mail.ru" :inputDisabled="loading" :validationError="email_validation_error" @input="$emit('email-input', $event)" @change="$emit('email-field-change')" />
   <AppInput id="password" inputLabel="Пароль" :inputType="passwordFieldInputType" inputPlaceholder="Ваш пароль" :inputDisabled="loading" :appendIcon="passwordFieldAppendIcon" :validationError="password_validation_error" @input="$emit('password-input', $event)" @change="$emit('password-field-change')" @eye-toggle="toggleEyeIcon($event)" @eye-closed-toggle="toggleEyeIcon($event)" />
   a(class='app-login-form__forgot-pswrd-link', href="#") Забыли пароль?
-  <AppButton btnText="Войти" :isBtnDisabled="isFormInvalid" @submit="$emit('submit', $event)"/>
+  <AppButton btnText="Войти" :isBtnDisabled="isFormInvalid" :isLoading="isLoading" @submit="$emit('submit', $event)"/>
 </template>
 
 <script>
@@ -25,6 +25,10 @@ export default {
       default: () => []
     },
     isFormInvalid: {
+      type: Boolean,
+      default: false
+    },
+    isLoading: {
       type: Boolean,
       default: false
     }

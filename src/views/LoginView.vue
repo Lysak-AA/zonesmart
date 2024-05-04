@@ -3,7 +3,7 @@
   <AppSnackbar v-if="loginError.length" :text="loginError" @close-snackbar="loginError = ''" />
   <AppHeader />
   main(class='login-page-main')
-    <AppLoginForm @email-input="emailInputHandler" :isFormInvalid="v$.$invalid" :validationErrorMessages="validation_errors" @password-input="passwordInputHandler" @submit="submitForm" @email-field-change="v$.$touch()" @password-field-change="v$.$touch()" />
+    <AppLoginForm @email-input="emailInputHandler" :isFormInvalid="v$.$invalid" :validationErrorMessages="validation_errors" :isLoading="loading" @password-input="passwordInputHandler" @submit="submitForm" @email-field-change="v$.$touch()" @password-field-change="v$.$touch()" />
 </template>
 
 <script>
@@ -37,7 +37,8 @@ export default {
         password_min_length: 'Пароль не должен быть короче 5 символов',
         password_max_length: 'Пароль не должен быть длиннее 20 символов'
       },
-      loginError: ''
+      loginError: '',
+      loading: false
     }
   },
   validations () {
@@ -91,6 +92,7 @@ export default {
         return false
       }
       try {
+        this.loading = true
         const response = await login(this.email, this.password)
         localStorage.setItem('accessToken', JSON.stringify(response.data.access))
         localStorage.setItem('refreshToken', JSON.stringify(response.data.refresh))
@@ -100,6 +102,8 @@ export default {
         setTimeout(() => {
           this.loginError = ''
         }, 5000)
+      } finally {
+        this.loading = false
       }
     }
   }

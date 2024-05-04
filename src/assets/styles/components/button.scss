@@ -19,4 +19,25 @@
     background-color: $light-grey-disabled;
     color: $light-grey;
   }
+  &__loader {
+    padding: 25px 20px;
+    display: flex;
+  }
+  &__loader-item {
+    width: 15px;
+    height: 15px;
+    margin: 0 5px;
+    border-radius: 100%;
+    background-color: $dark-blue;
+    animation: scale 1s ease 0s infinite;
+  }
+}
+
+@keyframes scale {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.2);
+  }
 }
