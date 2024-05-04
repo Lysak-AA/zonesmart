@@ -16,7 +16,7 @@
     span(class="app-products-grid__header-item") Максимальная цена
       <IconArrowDown />
     span(class="app-products-grid__header-item") Удалить
-  <AppProduct />
+  <AppProduct v-if="products.length" v-for="product, index in products" :key="product.id" :product="product" />
 </template>
 
 <script>
@@ -30,6 +30,12 @@ export default {
     AppCheckbox,
     IconArrowDown,
     AppProduct
+  },
+  props: {
+    products: {
+      type: Array,
+      default: () => []
+    }
   }
 }
 </script>

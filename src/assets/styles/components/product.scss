@@ -8,8 +8,17 @@
   align-items: center;
   color: $black;
   @include regular-15;
+  &__title {
+    white-space: nowrap;
+    overflow: hidden;
+    padding-right: 5px;
+  }
+  &__balance {
+    justify-self: center;
+  }
   img {
     max-width: 50px;
+    max-height: 50px;
   }
   svg {
     cursor: pointer;
