@@ -9,7 +9,7 @@
   span(class="app-product__brand") {{ product.brand_name || 'Нет бренда' }}
   span(class="app-product__title") {{ product.title }}
   span(class="app-product__balance") {{ product.quantity }}
-  span(class="app-product__current-price") {{ product.price }}
+  span(class="app-product__current-price") {{ product.price + ' &#8381'}}
   span(class="app-product__min-price") {{ product.min_price || 'Не установлена' }}
   span(class="app-product__max-price") {{ product.max_price || 'Не установлена' }}
   <IconDelete @delete="deleteProduct" />
