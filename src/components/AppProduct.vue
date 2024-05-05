@@ -10,8 +10,8 @@
   span(class="app-product__title") {{ product.title }}
   span(class="app-product__balance") {{ product.quantity }}
   span(class="app-product__current-price") {{ product.price + ' &#8381'}}
-  span(class="app-product__min-price") {{ product.min_price || 'Не установлена' }}
-  span(class="app-product__max-price") {{ product.max_price || 'Не установлена' }}
+  <AppPriceInput :value="product.min_price" />
+  <AppPriceInput :value="product.max_price" />
   <IconDelete @delete="deleteProduct" />
 </template>
 
@@ -19,13 +19,15 @@
 import AppCheckbox from '@/components/AppCheckbox.vue'
 import IconLink from '@/components/icons/IconLink.vue'
 import IconDelete from '@/components/icons/IconDelete.vue'
+import AppPriceInput from '@/components/AppPriceInput.vue'
 
 export default {
   name: 'AppProduct',
   components: {
     AppCheckbox,
     IconLink,
-    IconDelete
+    IconDelete,
+    AppPriceInput
   },
   props: {
     product: {

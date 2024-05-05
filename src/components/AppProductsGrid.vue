@@ -16,6 +16,7 @@
     span(class="app-products-grid__header-item") Максимальная цена
       <IconArrowDown />
     span(class="app-products-grid__header-item") Удалить
+  <AppProductsGridManagePanel />
   <AppProduct v-if="products.length" v-for="product, index in products" :key="product.id" :product="product" />
 </template>
 
@@ -23,13 +24,15 @@
 import AppCheckbox from '@/components/AppCheckbox.vue'
 import IconArrowDown from '@/components/icons/IconArrowDown.vue'
 import AppProduct from '@/components/AppProduct.vue'
+import AppProductsGridManagePanel from '@/components/AppProductsGridManagePanel.vue'
 
 export default {
   name: 'AppProductsGrid',
   components: {
     AppCheckbox,
     IconArrowDown,
-    AppProduct
+    AppProduct,
+    AppProductsGridManagePanel
   },
   props: {
     products: {
