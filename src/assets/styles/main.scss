@@ -19,6 +19,7 @@
 @import './components/product.scss';
 @import './components/product-manage-panel.scss';
 @import './components/price-input.scss';
+@import './components/pagination.scss';
 
 
 
@@ -29,7 +30,7 @@
 
 #app {
   max-width: 1920px;
-  height: 100vh;
+  min-height: 100vh;
   margin: 0 auto;
   font-weight: normal;
   overflow: hidden;

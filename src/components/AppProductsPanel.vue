@@ -10,7 +10,7 @@
   .app-products-panel__adding-item-block
     <AppInput inputLabel="Добавление товаров" inputPlaceholder="Введите артикул продавца, артикул WB или ссылку на товар" inputMaxWidth="648px"><slot><span class="app-products-panel__example-info">Например ваши товары: <span>119203059</span>, <span>124366343</span>, <span>59801844</span></span></slot></AppInput>
     <AppButton btnText="Добавить" style="padding: 15px 70px 15px 30px; margin: 0 0 20px 20px" :isBtnDisabled="true" />
-  <AppProductsGrid :products="products" />
+  <AppProductsGrid :products="products" :totalCount="totalCount" />
 </template>
 
 <script>
@@ -31,6 +31,10 @@ export default {
     products: {
       type: Array,
       default: () => []
+    },
+    totalCount: {
+      type: Number,
+      default: 0
     }
   }
 }

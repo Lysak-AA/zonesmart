@@ -1,0 +1,29 @@
+.app-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: fit-content;
+  margin: 20px auto 0;
+  span {
+    display: block;
+    border-radius: 6px;
+    height: 40px;
+    width: 40px;
+    text-align: center;
+    cursor: pointer;
+    font-family: 'Graphik';
+    font-size: 15px;
+    line-height: 40px;
+    font-weight: 400;
+  }
+  span:hover:not(.app-pagination__item--active):not(.arrow-disabled) {
+    background-color: $background;
+  }
+  span:last-child:not(.app-pagination__item--active) {
+    transform: rotate(180deg)
+  }
+  &__item--active {
+    background-color: $black-opacity-20;
+  }
+}

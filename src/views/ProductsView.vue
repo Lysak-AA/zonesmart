@@ -1,7 +1,7 @@
 <template lang="pug">
 main(class="app-products-page")
   <AppProductsHeader :userEmail="userEmail" />
-  <AppProductsPanel :products="products" />
+  <AppProductsPanel :products="products" :totalCount="totalCount" />
 </template>
 
 <script>

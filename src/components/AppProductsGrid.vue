@@ -18,6 +18,7 @@
     span(class="app-products-grid__header-item") Удалить
   <AppProductsGridManagePanel v-if="checkedProducts.length" :checkedAmount="checkedProducts.length" :productsAmount="products.length" @delete-checked="deleteCheckedProducts" @min-price-input="minPriceInputHandler" @max-price-input="maxPriceInputHandler" />
   <AppProduct v-if="products.length" v-for="product, index in populatedProducts" :key="product.id" :product="product" :isChecked="isProductChecked(product.id)" @checkbox-input="productCheckboxHandler($event, product.id)" @product-min-price-input="productMinPriceHandler($event, product.id)" @product-max-price-input="productMaxPriceHandler($event, product.id)"/>
+  <AppPagination :pages="Math.ceil(totalCount / perPage)" :currentPage="page" @change-page="changePageHandler" />
 </template>
 
 <script>
@@ -25,6 +26,7 @@ import AppCheckbox from '@/components/AppCheckbox.vue'
 import IconArrowDown from '@/components/icons/IconArrowDown.vue'
 import AppProduct from '@/components/AppProduct.vue'
 import AppProductsGridManagePanel from '@/components/AppProductsGridManagePanel.vue'
+import AppPagination from '@/components/AppPagination.vue'
 
 export default {
   name: 'AppProductsGrid',
@@ -32,18 +34,25 @@ export default {
     AppCheckbox,
     IconArrowDown,
     AppProduct,
-    AppProductsGridManagePanel
+    AppProductsGridManagePanel,
+    AppPagination
   },
   props: {
     products: {
       type: Array,
       default: () => []
+    },
+    totalCount: {
+      type: Number,
+      default: 0
     }
   },
   data () {
     return {
       checkedProducts: [],
-      populatedProducts: []
+      populatedProducts: [],
+      perPage: 10,
+      page: 1
     }
   },
   watch: {
@@ -109,6 +118,10 @@ export default {
           product.max_price = e.target.value
         }
       })
+    },
+    changePageHandler (page) {
+      console.log(page)
+      this.page = page
     }
   }
 }
