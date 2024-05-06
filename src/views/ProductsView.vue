@@ -1,7 +1,7 @@
 <template lang="pug">
 main(class="app-products-page")
   <AppProductsHeader :userEmail="userEmail" />
-  <AppProductsPanel :products="products" :totalCount="totalCount" />
+  <AppProductsPanel :products="products" :totalCount="totalCount" :perPage="perPage" :currentPage="currentPage" @change-page="changePage" />
 </template>
 
 <script>
@@ -19,20 +19,39 @@ export default {
   data () {
     return {
       products: [],
-      totalCount: 0
+      totalCount: 0,
+      perPage: 10,
+      currentPage: 1
     }
   },
   computed: {
     ...mapGetters(['userEmail'])
   },
+  watch: {
+    currentPage: {
+      async handler () {
+        await this.fetchProducts()
+      }
+    }
+  },
   async mounted () {
-    try {
-      const response = await getProducts()
-      console.log(response)
-      this.products = response?.data?.results
-      this.totalCount = response?.data?.count
-    } catch (err) {
-      console.warn(err.message)
+    await this.fetchProducts()
+  },
+  methods: {
+    async fetchProducts () {
+      try {
+        const limit = this.perPage
+        const offset = (this.currentPage - 1) * this.perPage
+        const response = await getProducts(limit, offset)
+        console.log(response)
+        this.products = response?.data?.results
+        this.totalCount = response?.data?.count
+      } catch (err) {
+        console.warn(err.message)
+      }
+    },
+    changePage (page) {
+      this.currentPage = page
     }
   }
 }

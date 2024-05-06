@@ -18,7 +18,7 @@
     span(class="app-products-grid__header-item") Удалить
   <AppProductsGridManagePanel v-if="checkedProducts.length" :checkedAmount="checkedProducts.length" :productsAmount="products.length" @delete-checked="deleteCheckedProducts" @min-price-input="minPriceInputHandler" @max-price-input="maxPriceInputHandler" />
   <AppProduct v-if="products.length" v-for="product, index in populatedProducts" :key="product.id" :product="product" :isChecked="isProductChecked(product.id)" @checkbox-input="productCheckboxHandler($event, product.id)" @product-min-price-input="productMinPriceHandler($event, product.id)" @product-max-price-input="productMaxPriceHandler($event, product.id)"/>
-  <AppPagination :pages="Math.ceil(totalCount / perPage)" :currentPage="page" @change-page="changePageHandler" />
+  <AppPagination :pages="Math.ceil(totalCount / perPage)" :currentPage="currentPage" @change-page="$emit('change-page', $event)" />
 </template>
 
 <script>
@@ -45,14 +45,20 @@ export default {
     totalCount: {
       type: Number,
       default: 0
+    },
+    currentPage: {
+      type: Number,
+      default: 1
+    },
+    perPage: {
+      type: Number,
+      default: 10
     }
   },
   data () {
     return {
       checkedProducts: [],
       populatedProducts: [],
-      perPage: 10,
-      page: 1
     }
   },
   watch: {
@@ -118,10 +124,6 @@ export default {
           product.max_price = e.target.value
         }
       })
-    },
-    changePageHandler (page) {
-      console.log(page)
-      this.page = page
     }
   }
 }
