@@ -17,7 +17,8 @@
       <IconArrowDown />
     span(class="app-products-grid__header-item") Удалить
   <AppProductsGridManagePanel v-if="checkedProducts.length" :checkedAmount="checkedProducts.length" :productsAmount="products.length" @delete-checked="deleteCheckedProducts" @min-price-input="minPriceInputHandler" @max-price-input="maxPriceInputHandler" />
-  <AppProduct v-if="products.length" v-for="product, index in populatedProducts" :key="product.id" :product="product" :isChecked="isProductChecked(product.id)" @checkbox-input="productCheckboxHandler($event, product.id)" @product-min-price-input="productMinPriceHandler($event, product.id)" @product-max-price-input="productMaxPriceHandler($event, product.id)"/>
+  <AppProduct v-if="products.length && !loading" v-for="product, index in populatedProducts" :key="product.id" :product="product" :isChecked="isProductChecked(product.id)" @checkbox-input="productCheckboxHandler($event, product.id)" @product-min-price-input="productMinPriceHandler($event, product.id)" @product-max-price-input="productMaxPriceHandler($event, product.id)"/>
+  <AppProductSkeleton v-if="loading" />
   <AppPagination :pages="Math.ceil(totalCount / perPage)" :currentPage="currentPage" @change-page="$emit('change-page', $event)" />
 </template>
 
@@ -27,6 +28,7 @@ import IconArrowDown from '@/components/icons/IconArrowDown.vue'
 import AppProduct from '@/components/AppProduct.vue'
 import AppProductsGridManagePanel from '@/components/AppProductsGridManagePanel.vue'
 import AppPagination from '@/components/AppPagination.vue'
+import AppProductSkeleton from '@/components/AppProductSkeleton.vue'
 
 export default {
   name: 'AppProductsGrid',
@@ -35,7 +37,8 @@ export default {
     IconArrowDown,
     AppProduct,
     AppProductsGridManagePanel,
-    AppPagination
+    AppPagination,
+    AppProductSkeleton
   },
   props: {
     products: {
@@ -53,6 +56,10 @@ export default {
     perPage: {
       type: Number,
       default: 10
+    },
+    loading: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
