@@ -10,8 +10,8 @@
   span(class="app-product__title") {{ product.title }}
   span(class="app-product__balance") {{ product.quantity }}
   span(class="app-product__current-price") {{ product.price + ' &#8381'}}
-  <AppPriceInput :value="product.min_price" />
-  <AppPriceInput :value="product.max_price" />
+  <AppPriceInput :currentPrice="product.min_price" @input="$emit('product-min-price-input', $event)" />
+  <AppPriceInput :currentPrice="product.max_price" @input="$emit('product-max-price-input', $event)" />
   <IconDelete @delete="deleteProduct(product.id)" />
 </template>
 

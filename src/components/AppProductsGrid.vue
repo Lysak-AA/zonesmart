@@ -17,7 +17,7 @@
       <IconArrowDown />
     span(class="app-products-grid__header-item") Удалить
   <AppProductsGridManagePanel v-if="checkedProducts.length" :checkedAmount="checkedProducts.length" :productsAmount="products.length" @delete-checked="deleteCheckedProducts" @min-price-input="minPriceInputHandler" @max-price-input="maxPriceInputHandler" />
-  <AppProduct v-if="products.length" v-for="product, index in populatedProducts" :key="product.id" :product="product" :isChecked="isProductChecked(product.id)" @checkbox-input="productCheckboxHandler($event, product.id)" />
+  <AppProduct v-if="products.length" v-for="product, index in populatedProducts" :key="product.id" :product="product" :isChecked="isProductChecked(product.id)" @checkbox-input="productCheckboxHandler($event, product.id)" @product-min-price-input="productMinPriceHandler($event, product.id)" @product-max-price-input="productMaxPriceHandler($event, product.id)"/>
 </template>
 
 <script>
@@ -94,6 +94,20 @@ export default {
             product.max_price = e.target.value
           }
         })
+      })
+    },
+    productMinPriceHandler (e, id) {
+      this.populatedProducts.forEach(product => {
+        if (product.id === id) {
+          product.min_price = e.target.value
+        }
+      })
+    },
+    productMaxPriceHandler (e, id) {
+      this.populatedProducts.forEach(product => {
+        if (product.id === id) {
+          product.max_price = e.target.value
+        }
       })
     }
   }
