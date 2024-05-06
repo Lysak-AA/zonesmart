@@ -16,8 +16,8 @@
     span(class="app-products-grid__header-item") Максимальная цена
       <IconArrowDown />
     span(class="app-products-grid__header-item") Удалить
-  <AppProductsGridManagePanel v-if="checkedProducts.length" />
-  <AppProduct v-if="products.length" v-for="product, index in products" :key="product.id" :product="product" :isChecked="isProductChecked(product.id)" @checkbox-input="productCheckboxHandler($event, product.id)" />
+  <AppProductsGridManagePanel v-if="checkedProducts.length" :checkedAmount="checkedProducts.length" :productsAmount="products.length" @delete-checked="deleteCheckedProducts" @min-price-input="minPriceInputHandler" @max-price-input="maxPriceInputHandler" />
+  <AppProduct v-if="products.length" v-for="product, index in populatedProducts" :key="product.id" :product="product" :isChecked="isProductChecked(product.id)" @checkbox-input="productCheckboxHandler($event, product.id)" />
 </template>
 
 <script>
@@ -42,7 +42,16 @@ export default {
   },
   data () {
     return {
-      checkedProducts: []
+      checkedProducts: [],
+      populatedProducts: []
+    }
+  },
+  watch: {
+    products: {
+      handler () {
+        this.populatedProducts = [...this.products]
+      },
+      deep: true
     }
   },
   methods: {
@@ -64,6 +73,28 @@ export default {
     },
     isProductChecked (id) {
       return !!this.checkedProducts.includes(id)
+    },
+    deleteCheckedProducts () {
+      console.log('deleted products with ids: ' + this.checkedProducts.join(', '))
+      this.checkedProducts = [] 
+    },
+    minPriceInputHandler (e) {
+      this.checkedProducts.forEach(id => {
+        this.populatedProducts.forEach(product => {
+          if (product.id === id) {
+            product.min_price = e.target.value
+          }
+        })
+      })
+    },
+    maxPriceInputHandler (e) {
+      this.checkedProducts.forEach(id => {
+        this.populatedProducts.forEach(product => {
+          if (product.id === id) {
+            product.max_price = e.target.value
+          }
+        })
+      })
     }
   }
 }
