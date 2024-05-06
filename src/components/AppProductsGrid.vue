@@ -1,7 +1,7 @@
 <template lang="pug">
 .app-products-grid
   .app-products-grid__header
-    <AppCheckbox checkboxType="line" />
+    <AppCheckbox checkboxType="line" :isChecked="checkedProducts.length > 0" @input="generalCheckboxHandler" />
     span(class="app-products-grid__header-item") Фото
     span(class="app-products-grid__header-item") Артикул продавца
     span(class="app-products-grid__header-item") Бренд
@@ -16,8 +16,8 @@
     span(class="app-products-grid__header-item") Максимальная цена
       <IconArrowDown />
     span(class="app-products-grid__header-item") Удалить
-  <AppProductsGridManagePanel />
-  <AppProduct v-if="products.length" v-for="product, index in products" :key="product.id" :product="product" />
+  <AppProductsGridManagePanel v-if="checkedProducts.length" />
+  <AppProduct v-if="products.length" v-for="product, index in products" :key="product.id" :product="product" :isChecked="isProductChecked(product.id)" @checkbox-input="productCheckboxHandler($event, product.id)" />
 </template>
 
 <script>
@@ -38,6 +38,32 @@ export default {
     products: {
       type: Array,
       default: () => []
+    }
+  },
+  data () {
+    return {
+      checkedProducts: []
+    }
+  },
+  methods: {
+    generalCheckboxHandler (e) {
+      e.preventDefault()
+      if (e.target.checked) {
+        this.checkedProducts = this.products.map(product => product.id)
+      } else {
+        this.checkedProducts = []
+      }
+    },
+    productCheckboxHandler (e, id) {
+      e.preventDefault()
+      if (e.target.checked) {
+        this.checkedProducts.push(id)
+      } else {
+        this.checkedProducts = this.checkedProducts.filter(productId => productId !== id)
+      }
+    },
+    isProductChecked (id) {
+      return !!this.checkedProducts.includes(id)
     }
   }
 }
